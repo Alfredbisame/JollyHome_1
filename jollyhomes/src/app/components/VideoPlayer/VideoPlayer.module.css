@@ -1,0 +1,93 @@
+/* Custom slider styles */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  border-radius: 2px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ffffff;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.slider::-moz-range-track {
+  background: rgba(255, 255, 255, 0.3);
+  height: 4px;
+  border-radius: 2px;
+  border: none;
+}
+
+.slider::-moz-range-thumb {
+  background: #ffffff;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: #e0e0e0;
+  transform: scale(1.1);
+}
+
+/* Progress bar specific styles */
+.progressSlider::-webkit-slider-thumb {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.progressSlider:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.progressSlider::-moz-range-thumb {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.progressSlider:hover::-moz-range-thumb {
+  opacity: 1;
+}
+
+/* Volume slider styles */
+.volumeSlider {
+  width: 80px;
+}
+
+.volumeSlider::-webkit-slider-track {
+  height: 2px;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+}
+
+.volumeSlider::-moz-range-track {
+  height: 2px;
+}
+
+.volumeSlider::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+}
