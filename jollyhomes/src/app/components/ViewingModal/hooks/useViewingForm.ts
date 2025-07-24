@@ -19,8 +19,8 @@ export const useViewingForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Handle form submission here
-      console.log('Viewing appointment request:', formData);
+      // TODO: Implement API call to submit viewing appointment request
+      // const response = await submitViewingRequest(formData);
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -28,6 +28,7 @@ export const useViewingForm = () => {
       onClose();
       resetForm();
     } catch (error) {
+      // TODO: Implement proper error handling and user notification
       console.error('Error submitting viewing appointment request:', error);
     } finally {
       setIsSubmitting(false);

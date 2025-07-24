@@ -19,9 +19,8 @@ export const useQuoteForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Handle form submission here
-      console.log('Quote request:', formData);
-      
+      // TODO: Implement API call to submit quote request
+      // const response = await submitQuoteRequest(formData);
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -29,6 +28,7 @@ export const useQuoteForm = () => {
       onClose();
       resetForm();
     } catch (error) {
+      // TODO: Implement proper error handling and user notification
       console.error('Error submitting quote request:', error);
     } finally {
       setIsSubmitting(false);

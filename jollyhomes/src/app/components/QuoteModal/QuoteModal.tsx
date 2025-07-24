@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { QuoteModalProps } from './types';
 import { overlayVariants, modalVariants } from './animations';
-import { useQuoteForm, useBodyScrollLock } from './hooks';
+import { useQuoteForm, useBodyScrollLock, useFocusTrap } from './hooks';
 import { ModalHeader, QuoteForm } from './components';
 
 const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
@@ -11,6 +11,9 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
   
   // Prevent body scroll when modal is open
   useBodyScrollLock(isOpen);
+  
+  // Focus management and keyboard navigation
+  const modalRef = useFocusTrap(isOpen, onClose);
 
   const onSubmit = (e: React.FormEvent) => {
     handleSubmit(e, onClose);
@@ -31,12 +34,18 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
           >
             {/* Modal */}
             <motion.div
+              ref={modalRef}
               variants={modalVariants}
               initial="closed"
               animate="open"
               exit="closed"
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quote-modal-title"
+              aria-describedby="quote-modal-description"
+              tabIndex={-1}
             >
               {/* Header */}
               <ModalHeader onClose={onClose} />

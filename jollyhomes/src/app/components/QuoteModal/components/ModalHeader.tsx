@@ -12,6 +12,8 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ onClose }) => {
       <button
         onClick={onClose}
         className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer"
+        aria-label="Close"
+        type="button"
       >
         <IoClose className="text-white text-sm" />
       </button>
@@ -21,8 +23,8 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ onClose }) => {
           <CiCalculator1 size={20} className="text-white text-xl" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-white">Get Your Quote</h2>
-          <p className="text-green-100 mt-1">Tell us about your dream home project</p>
+          <h2 id="quote-modal-title" className="text-2xl font-bold text-white">Get Your Quote</h2>
+          <p id="quote-modal-description" className="text-green-100 mt-1">Tell us about your dream home project</p>
         </div>
       </div>
     </div>
