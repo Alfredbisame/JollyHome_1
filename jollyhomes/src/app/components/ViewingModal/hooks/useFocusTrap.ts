@@ -25,8 +25,11 @@ export const useFocusTrap = (isOpen: boolean, onClose: () => void) => {
         if (!modalRef.current) return;
 
         const focusableElements = modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])'
         );
+        
+        // Check if there are any focusable elements
+        if (focusableElements.length === 0) return;
         
         const firstElement = focusableElements[0] as HTMLElement;
         const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
@@ -52,9 +55,14 @@ export const useFocusTrap = (isOpen: boolean, onClose: () => void) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       
-      // Restore focus to the previously focused element
+      // Restore focus to the previously focused element with error handling
       if (previousActiveElementRef.current) {
-        previousActiveElementRef.current.focus();
+        try {
+          previousActiveElementRef.current.focus();
+        } catch (error) {
+          // Silently handle cases where the element is no longer in DOM or disabled
+          console.warn('Could not restore focus to previous element:', error);
+        }
       }
     };
   }, [isOpen, onClose]);
