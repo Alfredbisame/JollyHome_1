@@ -6,11 +6,14 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import MobileNav from './MobileNav';
 import QuoteModal from './QuoteModal';
+import ViewingModal from './ViewingModal';
 import { IoCall } from 'react-icons/io5';
+import { MdSchedule } from 'react-icons/md';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isViewingModalOpen, setIsViewingModalOpen] = useState(false);
   const pathname = usePathname();
 
   const toggleMobileMenu = () => {
@@ -27,6 +30,14 @@ const Navbar = () => {
 
   const closeQuoteModal = () => {
     setIsQuoteModalOpen(false);
+  };
+
+  const openViewingModal = () => {
+    setIsViewingModalOpen(true);
+  };
+
+  const closeViewingModal = () => {
+    setIsViewingModalOpen(false);
   };
 
   const navItems = [
@@ -98,8 +109,19 @@ const Navbar = () => {
             </div>
 
             {/* CTA Button & Mobile Menu */}
-            <div className="flex items-center space-x-4">
-              {/* CTA Button */}
+            <div className="flex items-center space-x-3">
+              {/* Schedule Viewing Button */}
+              <motion.button 
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={openViewingModal}
+                className="hidden md:flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
+              >
+                <MdSchedule className="text-sm" />
+                <span>Schedule Viewing</span>
+              </motion.button>
+
+              {/* Get Quote Button */}
               <motion.button 
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -199,6 +221,12 @@ const Navbar = () => {
       <QuoteModal 
         isOpen={isQuoteModalOpen}
         onClose={closeQuoteModal}
+      />
+
+      {/* Viewing Modal */}
+      <ViewingModal 
+        isOpen={isViewingModalOpen}
+        onClose={closeViewingModal}
       />
     </>
   );
